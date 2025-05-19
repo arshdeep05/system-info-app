@@ -29,7 +29,7 @@
     },
     "mac": {
       "target": "dmg",
-      "sign": true,
+      "sign": false,
       "notarize": true
     },
     "win": {
