@@ -1,85 +1,83 @@
-name: Electron Cross-Platform Build
+name: Build Electron App
 
 on:
   push:
     branches:
       - main
   pull_request:
-    branches:
-      - main
 
 jobs:
   build-macos:
+    name: Build macOS DMG
     runs-on: macos-latest
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 18
 
       - name: Install dependencies
         run: npm install
 
+      - name: Install Electron app dependencies
+        run: npx electron-builder install-app-deps
+
       - name: Build React app
         run: npm run build
 
-      - name: Build Electron DMG (macOS)
+      - name: Build Electron DMG
         run: npx electron-builder --mac
 
-      - name: Upload macOS build artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: macos-dmg
-          path: dist/*.dmg
-
   build-windows:
+    name: Build Windows installer
     runs-on: windows-latest
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 18
 
       - name: Install dependencies
         run: npm install
 
+      - name: Install Electron app dependencies
+        run: npx electron-builder install-app-deps
+
       - name: Build React app
         run: npm run build
 
-      - name: Build Electron EXE (Windows)
+      - name: Build Windows NSIS installer
         run: npx electron-builder --win
 
-      - name: Upload Windows build artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: windows-exe
-          path: dist/*.exe
-
   build-linux:
+    name: Build Linux AppImage
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 18
 
       - name: Install dependencies
         run: npm install
 
+      - name: Install Electron app dependencies
+        run: npx electron-builder install-app-deps
+
       - name: Build React app
         run: npm run build
 
-      - name: Build Electron AppImage (Linux)
+      - name: Build Linux AppImage
         run: npx electron-builder --linux
-
-      - name: Upload Linux build artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: linux-appimage
-          path: dist/*.AppImage
