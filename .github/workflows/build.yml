@@ -32,6 +32,12 @@ jobs:
       - name: Build Electron DMG
         run: npx electron-builder --mac --publish=never
 
+      - name: Upload macOS artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-artifacts
+          path: release-builds/
+
   build-windows:
     name: Build Windows installer
     runs-on: windows-latest
@@ -57,6 +63,12 @@ jobs:
       - name: Build Windows NSIS installer
         run: npx electron-builder --win --publish=never
 
+      - name: Upload Windows artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-artifacts
+          path: release-builds/
+
   build-linux:
     name: Build Linux AppImage
     runs-on: ubuntu-latest
@@ -81,3 +93,9 @@ jobs:
 
       - name: Build Linux AppImage
         run: npx electron-builder --linux --publish=never
+
+      - name: Upload Linux artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-artifacts
+          path: release-builds/
