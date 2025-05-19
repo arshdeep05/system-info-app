@@ -29,7 +29,7 @@ jobs:
         run: npx electron-builder --mac
 
       - name: Upload macOS build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: macos-dmg
           path: dist/*.dmg
@@ -54,7 +54,7 @@ jobs:
         run: npx electron-builder --win
 
       - name: Upload Windows build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: windows-exe
           path: dist/*.exe
@@ -79,7 +79,7 @@ jobs:
         run: npx electron-builder --linux
 
       - name: Upload Linux build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: linux-appimage
           path: dist/*.AppImage
