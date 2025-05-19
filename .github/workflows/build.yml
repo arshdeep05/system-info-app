@@ -9,7 +9,7 @@ on:
 jobs:
   build-macos:
     name: Build macOS DMG
-    runs-on: macos-latest
+    runs-on: macos-15
 
     steps:
       - name: Checkout repo
@@ -19,6 +19,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+
+      - name: Clear npm cache
+        run: npm cache clean --force
 
       - name: Install dependencies
         run: npm install
