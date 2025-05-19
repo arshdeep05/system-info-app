@@ -28,7 +28,9 @@
       "output": "release-builds"
     },
     "mac": {
-      "target": "dmg"
+      "target": "dmg",
+      "sign": true,
+      "notarize": true
     },
     "win": {
       "target": "nsis"
