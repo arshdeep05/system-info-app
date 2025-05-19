@@ -23,6 +23,9 @@
     "extraMetadata": {
       "main": "main.js"
     },
+    "directories": {
+      "output": "release-builds"
+    },
     "mac": {
       "target": "dmg"
     },
