@@ -30,7 +30,7 @@ jobs:
         run: npm run build
 
       - name: Build Electron DMG
-        run: npx electron-builder --mac
+        run: npx electron-builder --mac --publish=never
 
   build-windows:
     name: Build Windows installer
@@ -55,7 +55,7 @@ jobs:
         run: npm run build
 
       - name: Build Windows NSIS installer
-        run: npx electron-builder --win
+        run: npx electron-builder --win --publish=never
 
   build-linux:
     name: Build Linux AppImage
@@ -80,4 +80,4 @@ jobs:
         run: npm run build
 
       - name: Build Linux AppImage
-        run: npx electron-builder --linux
+        run: npx electron-builder --linux --publish=never
